@@ -1,26 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://btqqkc4w3jyvw"]
+[gd_scene load_steps=7 format=3 uid="uid://btqqkc4w3jyvw"]
 
 [ext_resource type="Script" uid="uid://ba5b1bhd3cbph" path="res://level/landing_pad.gd" id="1_octfv"]
 [ext_resource type="PackedScene" uid="uid://jchlrc14cq2e" path="res://player.tscn" id="2_ypwww"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5xgho"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_u52ul"]
-sky_material = SubResource("ProceduralSkyMaterial_5xgho")
-
-[sub_resource type="Environment" id="Environment_vonw3"]
-background_mode = 2
-sky = SubResource("Sky_u52ul")
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi3di"]
-albedo_color = Color(0.629615, 0.30163, 0.133145, 1)
+[ext_resource type="PackedScene" uid="uid://bom7g8tbi1kp8" path="res://Background.tscn" id="3_ypwww"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lo0xd"]
-albedo_color = Color(1, 0.392157, 1, 1)
+albedo_color = Color(0.625792, 0.000318529, 0.633333, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b4ue"]
 albedo_color = Color(0.235294, 0.792157, 0, 1)
@@ -29,19 +14,6 @@ albedo_color = Color(0.235294, 0.792157, 0, 1)
 albedo_color = Color(0.313056, 0.43198, 1, 1)
 
 [node name="Level" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_vonw3")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
-
-[node name="Floor" type="CSGBox3D" parent="." groups=["Ground"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
-use_collision = true
-size = Vector3(30, 8, 5)
-material = SubResource("StandardMaterial3D_oi3di")
 
 [node name="Floor2" type="CSGBox3D" parent="." groups=["Ground"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13906, 5.5552, -0.00699043)
@@ -64,8 +36,11 @@ size = Vector3(2.06592, 0.169708, 2.46069)
 material = SubResource("StandardMaterial3D_f2txt")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.999722, 0.00293502, -0.0234043, 0, 0.992228, 0.12443, 0.0235876, -0.124396, 0.991952, 0.00899559, 4.11882, 7.59874)
+transform = Transform3D(0.999722, 0.00293502, -0.0234043, 0, 0.992228, 0.12443, 0.0235876, -0.124396, 0.991952, 0.00899559, 6.20893, 8.16032)
 
 [node name="Player" parent="." instance=ExtResource("2_ypwww")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22038, 1.09024, 0.130158)
 boost = 1380
+
+[node name="Floor" parent="." instance=ExtResource("3_ypwww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
